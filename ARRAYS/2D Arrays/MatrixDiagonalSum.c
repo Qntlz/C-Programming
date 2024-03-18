@@ -1,5 +1,5 @@
 /*
-    Given a square matrix of integers, write a function to calculate the sum of its diagonal elements. 
+    Given a square matrix of integers, calculate the sum of its diagonal elements. 
     The diagonal of a matrix refers to the set of elements that lie on the diagonal line that extends 
     from the top-left corner of the matrix to the bottom-right corner.
 */
