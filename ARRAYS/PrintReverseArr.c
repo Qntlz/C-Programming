@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// Prints the Array in Reverse
+
 int main()
 {
     int size,arr[20];
