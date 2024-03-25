@@ -1,14 +1,26 @@
 #include <stdio.h>
 
-// Find the smallest element in the array
+/*
+    Write a program that takes an array of integers as 
+    input and prints the minimum element in the array.
+*/
+
+void getMin(int*,int);
 
 int main()
 {
-    int size,min = 0,arr[20];
+    int size,arr[20];
 
     printf("Enter size of array: ");
     scanf("%d", &size);
     printf("Enter elements of array: \n");
+    getMin(arr,size);
+    return 0;
+}
+
+void getMin(int *arr,int size)
+{
+    int min;
     for(int i = 0; i < size; i++)
     {
         scanf("%d", &arr[i]);
@@ -17,9 +29,13 @@ int main()
             min = arr[i];
             break;
         }
+        if(i == 0) 
+        {
+            min = arr[i];
+            continue;
+        }
         if(arr[i] < min) min = arr[i];
         else continue;
     }
     printf("Minimum element in array is: %d",min);
-    return 0;
 }
