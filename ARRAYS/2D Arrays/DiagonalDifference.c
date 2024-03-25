@@ -1,11 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+    Write a function that accepts a square 2D array and returns the absolute 
+    difference between the sums of its diagonals. Ask for the size and elements 
+    of an array and use this array as a parameter for the created function.
+*/
+
+int getdiaDiff(int [][10],int);
+
 int main()
 {
-    int size,absDiff,dia1 = 0,dia2 = 0,arr[10][10];
+    int size,absDiff,arr[10][10];
     printf("Enter size of the array: ");
     scanf("%d", &size);
+    absDiff = getdiaDiff(arr,size);
+    printf("Absolute diagonal difference: %d",absDiff);
+
+    return 0;
+}
+
+int getdiaDiff(int arr[][10],int size)
+{
+    int dia1 = 0,dia2 = 0;
     printf("Enter elements of the array: \n");
     for(int i = 0; i < size; i++)
     {
@@ -22,8 +39,5 @@ int main()
             if(j == size - i - 1) dia2 += arr[i][j];
         }
     }
-    absDiff = abs(dia1 - dia2);
-    printf("Absolute diagonal difference: %d",absDiff);
-
-    return 0;
+    return abs(dia1 - dia2);
 }
