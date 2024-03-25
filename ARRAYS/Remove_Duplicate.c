@@ -2,6 +2,12 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+/*
+    Write a program that takes an integer array input and removes 
+    duplicate elements from it, outputting the resulting array without 
+    using functions.
+*/
+
 int main()
 {
     int size,temp;
