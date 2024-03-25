@@ -21,6 +21,7 @@ int main()
 void getMin(int *arr,int size)
 {
     int min;
+    min = arr[0];
     for(int i = 0; i < size; i++)
     {
         scanf("%d", &arr[i]);
@@ -28,11 +29,6 @@ void getMin(int *arr,int size)
         {
             min = arr[i];
             break;
-        }
-        if(i == 0) 
-        {
-            min = arr[i];
-            continue;
         }
         if(arr[i] < min) min = arr[i];
         else continue;
