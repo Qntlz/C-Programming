@@ -1,6 +1,9 @@
 #include <stdio.h>
 
-// Finds the duplicate elements in the array
+/*
+    Write a program that takes an input array of integers and prints a 
+    new array containing all the duplicate elements in the original array.
+*/
 
 int main()
 {
