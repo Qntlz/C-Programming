@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-// Checks if the array is sorted
+/*
+    Write a program that takes an array of 10 integers as input and prints 
+    True if the array is sorted in non-decreasing order, and False otherwise.
+*/
 
 int main()
 {
