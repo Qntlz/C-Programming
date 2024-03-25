@@ -1,14 +1,26 @@
 #include <stdio.h>
 
-// Find the greatest element in the array
+/*
+    Write a function that takes an array of integers as 
+    input and prints the maximum element in the array.
+*/
+
+void getMax(int*,int);
 
 int main()
 {
-    int size,max = 0,arr[20];
+    int size,arr[20];
 
     printf("Enter size of array: ");
     scanf("%d", &size);
     printf("Enter elements of array: \n");
+    getMax(arr,size);
+    return 0;
+}
+
+void getMax(int *arr, int size)
+{
+    int max = 0;
     for(int i = 0; i < size; i++)
     {
         scanf("%d", &arr[i]);
@@ -16,5 +28,4 @@ int main()
         else continue;
     }
     printf("Maximum element in array is: %d",max);
-    return 0;
 }
