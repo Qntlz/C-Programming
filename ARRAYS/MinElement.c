@@ -5,33 +5,35 @@
     input and prints the minimum element in the array.
 */
 
-void getMin(int*,int);
+int getMin(int*, int);
 
 int main()
 {
-    int size,arr[20];
-
-    printf("Enter size of array: ");
+    int size, arr[20];
+    printf("Enter the number of elements: ");
     scanf("%d", &size);
-    printf("Enter elements of array: \n");
-    getMin(arr,size);
+
+    if (size > 20 || size <= 0) {
+        printf("Invalid size.\n");
+        return 1; // Returning non-zero indicates an error
+    }
+
+    printf("Enter the elements: \n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    int min = getMin(arr, size);
+    printf("Minimum element in array: %d\n", min);
     return 0;
 }
 
-void getMin(int *arr,int size)
+int getMin(int *arr, int size)
 {
-    int min;
-    min = arr[0];
-    for(int i = 0; i < size; i++)
-    {
-        scanf("%d", &arr[i]);
-        if(size == 1)
-        {
-            min = arr[i];
-            break;
-        }
-        if(arr[i] < min) min = arr[i];
-        else continue;
+    int min = arr[0]; // Initialize min to the first element
+
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < min) min = arr[i]; // Update min if current element is smaller
     }
-    printf("Minimum element in array is: %d",min);
+    return min;
 }
