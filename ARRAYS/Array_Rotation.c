@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /*
-    Write a program that takes an array of integers and a number k as input and 
+    Write a function that takes an array of integers and a number k as input and 
     uses nested loops to rotate the array k times to the right. The program should 
     print the rotated array.
 
@@ -17,27 +17,33 @@
     Rotated array: 2 3 4 5 1
 */
 
+#include <stdio.h>
+#include <stdlib.h>
+
+void rotateArr(int*,int,int);
+
 int main()
 {
-    int temp,size,arr[20],rot;
-    printf("Enter size of array: ");
+    int size,rotations;
+    printf("Enter the number of elements in the array: ");
     scanf("%d", &size);
-    printf("Enter elements of array: \n");
+    int *arr = (int*) malloc(size*sizeof(int));
+    printf("Enter the elements of the array: \n");
     for(int i = 0; i < size; i++) scanf("%d", &arr[i]);
-    printf("Enter number of rotations: ");
-    scanf("%d", &rot);
+    printf("Enter the number of positions to rotate: ");
+    scanf("%d", &rotations);
+    rotateArr(arr,size,rotations);
+    printf("Rotated Array: ");
+    for(int i = 0; i < size; i++) printf("%d ",arr[i]);
+    return 0;
+}
 
-    for(int i = 0; i < rot; i++)
+void rotateArr(int *arr,int size, int rotations)
+{
+    for(int i = 0; i < rotations; i++)
     {
-        temp = arr[size - 1];
-        for(int j = size - 1; j > 0; j--) 
-        {
-            arr[j] = arr[j - 1];
-        }
+        int temp = arr[size - 1];
+        for(int j = size - 1; j >= 0; j--) arr[j] = arr[j - 1];
         arr[0] = temp;
     }
-    printf("Rotated array: ");
-    for(int i = 0; i < size; i++) printf("%d ",arr[i]);
-
-    return 0;
-}   
+}
