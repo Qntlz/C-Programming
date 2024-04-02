@@ -10,7 +10,7 @@ void sortArr(int*,int);
 int main()
 {
     int size;
-        printf("Enter the number of elements: ");
+    printf("Enter the number of elements: ");
     scanf("%d", &size);
     int *arr = (int*)malloc(size*sizeof(int));
     printf("Enter the elements:\n");
