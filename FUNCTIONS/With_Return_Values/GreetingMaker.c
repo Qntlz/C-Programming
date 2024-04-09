@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define NAME_LEN 50     // Assuming the length of 50 characters
+
 char* makeGreeting();
 
 int main()
@@ -20,8 +22,8 @@ int main()
 
 char* makeGreeting()
 {
-   char name[10]; // Using a fixed-size array for name
-   char *greeting = (char*)malloc(20*sizeof(char)); // Allocating memory for greeting
+   char name[NAME_LEN]; // Using a fixed-size array for name
+   char *greeting = (char*)malloc(NAME_LEN*sizeof(char)); // Allocating memory for greeting
    if (greeting == NULL) {
        fprintf(stderr, "Memory allocation failed\n");
        exit(1);
