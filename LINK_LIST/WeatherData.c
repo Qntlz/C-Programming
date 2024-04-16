@@ -38,7 +38,7 @@ void display(NodePtr);                                              // Function 
 
 int main()
 {
-    NodePtr base,coldList;                                          // Declare base(All data) & coldList(Data that is assigned to us)
+    NodePtr base = NULL,coldList = NULL;                            // Declare base(All data) & coldList(Data that is assigned to us)
     base = initialize();                                            // Populate the base list with default values
     display(base);                                                  
     coldList = copyList(base);                                      // Populate the coldList with the specific data
@@ -214,7 +214,7 @@ void display(NodePtr top)
                 printf("\n Wettest:\n\n");
                 onceWettest = true;
             }
-            printf("\t%s\n\t%s %s %.1f mm\n\n", top->day.day, top->day.city, top->day.status, top->day.vol);
+            printf("\t%s\n\t%s %.1f mm\n\n", top->day.day, top->day.city, top->day.vol);
         }
 
         if (top->day.speed != 0)                     // For labelling purposes
@@ -224,7 +224,7 @@ void display(NodePtr top)
                 printf("\n Windiest:\n\n");
                 onceWindiest = true;
             }
-            printf("\t%s\n\t%s %s %d km/h\n\n", top->day.day, top->day.city, top->day.status, top->day.speed);
+            printf("\t%s\n\t%s %d km/h\n\n", top->day.day, top->day.city, top->day.speed);
         }
 
         top = top->next;
