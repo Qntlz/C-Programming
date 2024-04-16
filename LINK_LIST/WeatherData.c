@@ -3,6 +3,18 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/*
+    Goal:
+        1. This program creates a Weather link list base on the data provided.
+        2. Using the created link list make another list for a specific category 
+           (Hottest, Coldest, Wettest, Windiest) of your choice
+        3. Sort the specific category list that you recently created.
+        4. Display them in the following manner:
+                1. Weather List (Original List)
+                2. Specific Category List(Hottest, Coldest, Wettest, Windiest)
+                3. Sorted Specific Category List
+*/
+
 typedef struct data
 {
     char day[10],city[20],status[5];            
