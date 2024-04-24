@@ -29,7 +29,7 @@ int main()
 
     top = populate();       // Returns the top of the created link list
     display(top);
-
+    free(top);
     return 0;
 }
 

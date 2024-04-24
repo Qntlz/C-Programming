@@ -43,6 +43,9 @@ int main()
     printf("\nAfter Delete:\n");
     display(top);
 
+    free(top);
+    free(last);
+
     return 0;
 }
 
