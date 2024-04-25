@@ -1,4 +1,16 @@
-// Given a linked list, swap the data of adjacent node
+/*  Given a linked list, swap the data of adjacent node
+
+    Sample Test Case:
+
+    Enter size of linked list: 5
+    Enter element 1: 1
+    Enter element 2: 2
+    Enter element 3: 3
+    Enter element 4: 4
+    Enter element 5: 5
+    Original linked list: 1 2 3 4 5
+    Updated linked list: 2 1 4 3 5
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
