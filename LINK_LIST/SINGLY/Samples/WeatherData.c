@@ -231,7 +231,6 @@ void display(NodePtr top)
     }
 }
 
-
 NodePtr copyList(NodePtr top)
 {
     NodePtr coldList = NULL,last = NULL;
