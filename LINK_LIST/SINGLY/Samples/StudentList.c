@@ -1,3 +1,5 @@
+// A Link list of students containg their name, gender, course, year level and grade
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
