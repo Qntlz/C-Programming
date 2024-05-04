@@ -24,11 +24,18 @@ typedef struct node
 NodePtr makeNode(char*,char*,char*,int,int);
 NodePtr initialize();
 void display(NodePtr);
+void MergeSort(NodePtr*);
+void split(NodePtr,NodePtr*,NodePtr*);
+NodePtr sortedMerge(NodePtr,NodePtr);
 
 int main()
 {
     NodePtr top = NULL;
     top = initialize();
+    display(top);
+
+    printf("\nSorted By Name:\n\n");
+    MergeSort(&top);
     display(top);
 
     return 0;
@@ -96,7 +103,7 @@ NodePtr initialize()
     last->next = newNode;
     last = newNode;
 
-    newNode = makeNode("Yōko Yoshi", "Female","IS",4,93);
+    newNode = makeNode("Yoko Yoshi", "Female","IS",4,93);
     last->next = newNode;
     last = newNode;
 
@@ -108,7 +115,7 @@ NodePtr initialize()
     last->next = newNode;
     last = newNode;
 
-    newNode = makeNode("Hayate Ryōsuke", "Male","IS",3,82);
+    newNode = makeNode("Hayate Ryosuke", "Male","IS",3,82);
     last->next = newNode;
     last = newNode;
 
@@ -124,4 +131,59 @@ void display(NodePtr top)
         printf("%s\t%s\t%d\t%s\t%d\n",top->info.name,top->info.gender,top->info.yrLvl,top->info.course,top->info.grade);
         top = top->next;
     }
+}
+
+void MergeSort(NodePtr *top)
+{
+    NodePtr a = NULL, b= NULL, curr = *top;
+
+    //Base Case
+    if((curr == NULL) || (curr->next == NULL)) return;
+
+    // Split
+    split(curr, &a,&b);
+
+    // Recursion
+    MergeSort(&a);
+    MergeSort(&b);
+
+    // Merge 
+    *top = sortedMerge(a,b);
+}
+void split(NodePtr curr,NodePtr *front,NodePtr *back)
+{
+    NodePtr slow = curr, fast = curr->next;
+
+    while (fast != NULL)
+    {
+        fast = fast->next;
+        if(fast != NULL)
+        {
+            fast = fast->next;
+            slow = slow->next;
+        }
+    }
+    *front = curr;
+    *back = slow->next;
+    slow->next = NULL;
+}
+NodePtr sortedMerge(NodePtr a,NodePtr b)
+{
+    NodePtr result = NULL;
+
+    //Base Case;
+    if(a == NULL) return b;
+    else if(b == NULL) return a;
+
+    if(strcmp(a->info.name,b->info.name) < 0)
+    {
+        result = a;
+        result->next = sortedMerge(a->next,b);
+    }
+    else
+    {
+        result = b;
+        result->next = sortedMerge(a,b->next);
+    }
+    return result;
 }
