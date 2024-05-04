@@ -122,7 +122,6 @@ NodePtr initialize()
     return top;
 
 }
-
 void display(NodePtr top)
 {
     printf("Students\tGender\tYear Level\tCourse\tGrade\n\n");
@@ -132,7 +131,6 @@ void display(NodePtr top)
         top = top->next;
     }
 }
-
 void MergeSort(NodePtr *top)
 {
     NodePtr a = NULL, b= NULL, curr = *top;
