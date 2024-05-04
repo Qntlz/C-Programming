@@ -32,8 +32,10 @@ typedef struct node
 NodePtr makeNode(char*,char*,char*,int,float,float);                // Function for making a node
 NodePtr initialize();                                               // Function for initializing default values
 NodePtr copyList(NodePtr);                                          // Function to create a list for assigned topic (For ours "Coldest")
-void sortList(NodePtr);                                             // Function that sorts a list (Ascending Order)
+void MergeSort(NodePtr*);                                            // Function that sorts a list (Ascending Order)
 void display(NodePtr);                                              // Function to display the list
+void split(NodePtr,NodePtr*,NodePtr*);
+NodePtr sortedMerge(NodePtr,NodePtr);
 
 
 int main()
@@ -44,7 +46,7 @@ int main()
     coldList = copyList(base);                                      // Populate the coldList with the specific data
     display(coldList);
     printf("\n\nSorted Coldest List:\n");
-    sortList(coldList);                                             // Sort the list
+    MergeSort(&coldList);                                             // Sort the list
     display(coldList);
     
     return 0;
@@ -257,53 +259,60 @@ NodePtr copyList(NodePtr top)
     return coldList;                                                    // Return the new list
 }
 
-void sortList(NodePtr top)
+void MergeSort(NodePtr *top)
 {
-    if (top == NULL || top->next == NULL)
-        return; // List is empty or has only one node, no need to sort
+    NodePtr a = NULL, b = NULL, curr = *top;
 
-    NodePtr current, nextNode;
-    float temp;
+    //Base Case
+    if((curr == NULL) || (curr->next == NULL)) return;
 
-    for (current = top; current->next != NULL; current = current->next)
+    //Split
+    split(curr,&a,&b);
+
+    // Recursion
+    MergeSort(&a);
+    MergeSort(&b);
+
+    //Merge
+    *top = sortedMerge(a,b);
+} 
+
+void split(NodePtr curr,NodePtr *front,NodePtr *back)
+{
+    NodePtr slow = curr, fast = curr->next;
+
+    while (fast != NULL)
     {
-        for (nextNode = current->next; nextNode != NULL; nextNode = nextNode->next)
+        fast = fast->next;
+        if(fast != NULL)
         {
-            // If the temperature of the current node is greater than the temperature of the next node, swap them
-            if (current->day.temp > nextNode->day.temp)
-            {
-                // Swap temperatures
-                temp = current->day.temp;
-                current->day.temp = nextNode->day.temp;
-                nextNode->day.temp = temp;
-
-                // Swap other data (day, city, status, speed, vol)
-                char tempDay[10];
-                strcpy(tempDay, current->day.day);
-                strcpy(current->day.day, nextNode->day.day);
-                strcpy(nextNode->day.day, tempDay);
-
-                char tempCity[20];
-                strcpy(tempCity, current->day.city);
-                strcpy(current->day.city, nextNode->day.city);
-                strcpy(nextNode->day.city, tempCity);
-
-                char tempStatus[5];
-                strcpy(tempStatus, current->day.status);
-                strcpy(current->day.status, nextNode->day.status);
-                strcpy(nextNode->day.status, tempStatus);
-
-                int tempSpeed = current->day.speed;
-                current->day.speed = nextNode->day.speed;
-                nextNode->day.speed = tempSpeed;
-
-                float tempVol = current->day.vol;
-                current->day.vol = nextNode->day.vol;
-                nextNode->day.vol = tempVol;
-            }
+            fast = fast->next;
+            slow = slow->next;
         }
     }
+    
+    *front = curr;
+    *back = slow->next;
+    slow->next = NULL;
 }
 
+NodePtr sortedMerge(NodePtr a,NodePtr b)
+{
+    NodePtr result = NULL;
 
+    //Base Case
+    if(a == NULL) return b;
+    else if(b == NULL) return a;
 
+    if(a->day.temp <= b->day.temp)
+    {
+        result = a;
+        result->next = sortedMerge(a->next,b);
+    }
+    else
+    {
+        result = b;
+        result->next = sortedMerge(a,b->next);
+    }
+    return result;
+}
