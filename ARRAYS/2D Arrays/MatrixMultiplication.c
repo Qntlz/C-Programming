@@ -7,49 +7,65 @@
 
 #include <stdio.h>
 
-int main()
-{
-    int fRows,fCols,sRows,sCols,firArr[20][20],secArr[20][20],tempArr[10][10] = {0};
+int main() {
+    int fRows, fCols, sRows, sCols;
 
+    // Input dimensions for the first matrix
     printf("Enter rows and columns for the first matrix: ");
-    scanf("%d %d",&fRows,&fCols);
-    printf("Enter rows and columns for the second matrix: ");
-    scanf("%d %d",&sRows,&sCols);
+    scanf("%d %d", &fRows, &fCols);
 
-    if(fCols != sRows)
-    {
-        printf("Matrices cannot be multiplied.");
+    // Input dimensions for the second matrix
+    printf("Enter rows and columns for the second matrix: ");
+    scanf("%d %d", &sRows, &sCols);
+
+    // Check if the matrices can be multiplied
+    if (fCols != sRows) {
+        printf("Matrices cannot be multiplied.\n");
         return 0;
     }
 
+    int firArr[fRows][fCols], secArr[sRows][sCols], tempArr[fRows][sCols];
+
+    // Initialize tempArr to 0
+    for (int i = 0; i < fRows; i++) {
+        for (int j = 0; j < sCols; j++) {
+            tempArr[i][j] = 0;
+        }
+    }
+
+    // Input elements for the first matrix
     printf("\nEnter elements of the first matrix:\n");
-    for(int i = 0; i < fRows; i++)
-    {
-        for(int j = 0; j < fCols; j++) scanf("%d",&firArr[i][j]);
+    for (int i = 0; i < fRows; i++) {
+        for (int j = 0; j < fCols; j++) {
+            scanf("%d", &firArr[i][j]);
+        }
     }
 
+    // Input elements for the second matrix
     printf("\nEnter elements of the second matrix:\n");
-    for(int i = 0; i < sRows; i++)
-    {
-        for(int j = 0; j < sCols; j++) scanf("%d",&secArr[i][j]);
+    for (int i = 0; i < sRows; i++) {
+        for (int j = 0; j < sCols; j++) {
+            scanf("%d", &secArr[i][j]);
+        }
     }
 
-    // Solve Matrix Multiplication
-    for(int i = 0; i < sCols; i++)
-    {
-        for(int j = 0; j < fRows; j++)
-        {
-            for(int k = 0; k < sRows; k++)
-            {
-               tempArr[j][i] += firArr[j][k] * secArr[k][i];
+    // Perform matrix multiplication
+    for (int i = 0; i < fRows; i++) {
+        for (int j = 0; j < sCols; j++) {
+            for (int k = 0; k < fCols; k++) {
+                tempArr[i][j] += firArr[i][k] * secArr[k][j];
             }
         }
     }
-    printf("\nProduct of the matrices: \n");
-    for(int i = 0; i < fRows; i++)
-    {
-        for(int j = 0; j < sCols; j++) printf("%d ",tempArr[i][j]);
+
+    // Output the product of the matrices
+    printf("\nProduct of the matrices:\n");
+    for (int i = 0; i < fRows; i++) {
+        for (int j = 0; j < sCols; j++) {
+            printf("%d ", tempArr[i][j]);
+        }
         printf("\n");
     }
+
     return 0;
 }
