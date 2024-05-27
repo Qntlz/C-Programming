@@ -30,7 +30,7 @@ char* reverse_string(char *str)
     char *revStr = (char*)malloc(STR_LEN*sizeof(char));     // Create a another string for the reverse form
 
     for(int i = 0; i < len; i++) revStr[i] = str[len - i -1];       // Store the reverse of the string 
-
+    revStr[len] = '\0';
     return revStr;  // Return the reverse of the string
     
 }
