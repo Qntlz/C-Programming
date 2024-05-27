@@ -12,20 +12,26 @@ int* concatArr(int*,int*,int,int);
 int main()
 {
     int len1,len2;
+
+    // First Array
     printf("Enter the number of elements in the first array: ");
     scanf("%d", &len1);
     int *firArr = (int*)malloc(len1*sizeof(int));
     printf("Enter the elements of the first array: \n");
     for(int i = 0; i < len1; i++) scanf("%d", &firArr[i]);
 
+    // Second Array
     printf("Enter the number of elements in the second array: ");
     scanf("%d", &len2);
     int *secArr = (int*)malloc(len2*sizeof(int));
     printf("Enter the elements of the second array: \n");
     for(int i = 0; i < len2; i++) scanf("%d", &secArr[i]);
+
+    // Concatenated Array
     int *newArr = concatArr(firArr,secArr,len1,len2);
     printf("Concatenated array:\n");
     for(int i = 0; i < len1 + len2; i++) printf("%d ",newArr[i]);
+    free(newArr);
     return 0;
 }
 
