@@ -21,7 +21,7 @@ int main() {
         else if (tolower(str[i]) == 'z') break;
         
     }
-    printf("Number of words processed before finding the word containing 'z': %d\n", count + 1);
+    printf("Number of words processed before finding the word containing 'z': %d\n", count);
 
     return 0;
 }
