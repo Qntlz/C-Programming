@@ -1,6 +1,8 @@
 /*
     Write a program to count the number of nodes in a linked list. 
     Ask input for elements that will stop once 0 is inputted.
+
+    Made by Lance
 */
 
 #include <stdio.h>
