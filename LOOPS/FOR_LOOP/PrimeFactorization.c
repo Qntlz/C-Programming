@@ -27,7 +27,8 @@ bool isPrime(int n){
 }
 
 void getPrimeFactor(int n){
-        
+
+    printf("Prime Factors: "); 
     for(int i = 2; i <= n; i++){
         if( isPrime(i) ){
             int x = i;

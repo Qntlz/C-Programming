@@ -12,12 +12,14 @@ float solve(int,int,char);
 int main()
 {
     int num1,num2;
-    char opt,str[255];
+    char opt,str[10];
     printf("Enter the operation: ");
     fgets(str,sizeof(str),stdin);
     str[strlen(str) - 1] = '\0';
+
     sscanf(str,"%d %c %d",&num1,&opt,&num2);
     printf("Result: %.2lf",solve(num1,num2,opt));
+
     return 0;
 }
 

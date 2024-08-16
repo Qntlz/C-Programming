@@ -16,11 +16,14 @@ int main()
     char *str = (char*)malloc(STR_LEN*sizeof(char)),*revStr;
     printf("Enter a string: ");
     fgets(str,STR_LEN,stdin);
-    str[strlen(str) - 1] = '\0';            // Remove '\n' character at the end of the string
+    str[strlen(str) - 1] = '\0';           // Remove '\n' character at the end of the string
+
     revStr = reverse_string(str);
     printf("The reversed string is:\n%s",revStr);
+
     free(revStr);
     free(str);
+    
     return 0;
 }
 

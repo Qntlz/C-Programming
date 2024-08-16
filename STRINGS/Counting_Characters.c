@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+// Counting occurrences of a character in a string
+
 int main()
 {
     int len,ctr = 0;
@@ -8,6 +10,7 @@ int main()
     printf("Enter a string: ");
     fgets(str,sizeof(str),stdin);
     str[strlen(str) - 1] = '\0';
+
     printf("Enter a character to count: ");
     scanf(" %c", &find);
 

@@ -22,9 +22,11 @@
 int main()
 {
     char str[255],shufstr[255];
+
     printf("Enter a string: ");
     fgets(str,255,stdin);
     str[strlen(str) - 1] = '\0';
+
     int len = strlen(str);
     printf("Enter %d indices: \n",len);
     for(int i = 0; i < len; i++)
@@ -33,6 +35,7 @@ int main()
         scanf("%d", &temp);
         shufstr[temp] = str[i];
     }
+    
     printf("Shuffled string: %s",shufstr);
     return 0;
 }
