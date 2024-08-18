@@ -1,5 +1,5 @@
 /*
-    Write a program to count the number of nodes in a linked list. 
+    Write a program to count the number of nodes in a linked list.
     Ask input for elements that will stop once 0 is inputted.
 
     Made by Lance
@@ -15,49 +15,44 @@ typedef struct node
 } Node, *NodePtr;
 
 NodePtr makeNode(int);
-NodePtr populate();
+void populate(NodePtr *);
 int countNode(NodePtr);
 
 int main()
 {
     int numNodes = 0;
     NodePtr top = NULL;
-    top = populate();
+    populate(&top);
     numNodes = countNode(top);
-    printf("Number of nodes: %d",numNodes);
+    printf("Number of nodes: %d", numNodes);
     return 0;
 }
 
 NodePtr makeNode(int num)
 {
-    NodePtr newNode = (NodePtr) malloc(sizeof(Node));
+    NodePtr newNode = (NodePtr)malloc(sizeof(Node));
     newNode->num = num;
     newNode->next = NULL;
     return newNode;
 }
-NodePtr populate()
+void populate(NodePtr *top)
 {
     int num;
-    NodePtr top = NULL, last = NULL,newNode = NULL;
+    NodePtr last = NULL, newNode = NULL;
 
-    while (num != 0)
+    do
     {
         printf("Enter element (enter 0 to stop): ");
-        if(scanf("%d", &num) == 0 || num == 0) break;
+        scanf("%d", &num);
         newNode = makeNode(num);
-        if(top == NULL) top = newNode;
+        if (*top == NULL) *top = newNode;
         else last->next = newNode;
         last = newNode;
-    }
-    return top;
+    }while (num != 0);
 }
 int countNode(NodePtr top)
 {
     int ctr = 0;
-    while (top != NULL)
-    {
-        ctr++;
-        top = top->next;
-    }
+    for (;top != NULL; top = top->next) ctr++;
     return ctr;
 }
