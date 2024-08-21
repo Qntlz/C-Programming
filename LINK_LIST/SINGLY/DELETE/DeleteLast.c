@@ -49,15 +49,21 @@ void populate(List *head)
     for (int i = 10; i <= 30; i+=10)
     {
         List newNode = makeNode(i);
-        if(*head == NULL) *head = newNode;
-        else last->next = newNode;
+        if(*head == NULL) {
+            *head = newNode;
+        }
+        else { 
+            last->next = newNode;
+        }
         last = newNode;
     }
 }
 
 void display(List head)
 {
-    for (;head != NULL; head = head->next) printf("%d ",head->data);
+    for (;head != NULL; head = head->next) {
+        printf("%d ",head->data);
+    }
 }
 
 void delLastNode(List head)

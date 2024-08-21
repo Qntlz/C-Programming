@@ -46,8 +46,7 @@ List makeNode(int num)
 void populate(List *head)
 {
     List last = NULL;
-    for (int i = 10; i <= 30; i+=10)
-    {
+    for (int i = 10; i <= 30; i+=10){
         List newNode = makeNode(i);
         if(*head == NULL) *head = newNode;
         else last->next = newNode;
@@ -57,12 +56,14 @@ void populate(List *head)
 
 void display(List head)
 {
-    for (; head != NULL; head = head->next) printf("%d ",head->data);
+    for (; head != NULL; head = head->next) {
+        printf("%d ",head->data);
+    }
 }
 
 void delFirNode(List *head)
 {
     List temp = *head;                  // Stores the first node in a temporary variable
-    *head = (*head)->next;              // Set the second node to be the first node
+    *head = temp->next;              // Set the second node to be the first node
     free(temp);                         // Free the old first node
 }

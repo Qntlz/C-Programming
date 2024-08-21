@@ -38,8 +38,9 @@ List makeNode(int num)
 {
     List newNode = malloc(sizeof(Node));
 
-    if (newNode == NULL)
+    if (newNode == NULL){
         printf("Memory Allocation Failed");
+    }
 
     newNode->data = num;
     newNode->next = NULL;
@@ -49,10 +50,8 @@ List makeNode(int num)
 void populate(List *head)
 {
     List last = NULL;
-    for (int i = 1; i < 3; i++)
-    {
-        for (int j = 10; j <= 30; j += 10)
-        {
+    for (int i = 1; i < 3; i++){
+        for (int j = 10; j <= 30; j += 10){
             List newNode = makeNode(j);
             if (*head == NULL) *head = newNode;
             else last->next = newNode;
@@ -63,8 +62,9 @@ void populate(List *head)
 
 void display(List head)
 {
-    for (; head != NULL; head = head->next)
+    for (; head != NULL; head = head->next){
         printf("%d ", head->data);
+    }
 }
 
 void delNode(List *head, int target)
@@ -72,13 +72,11 @@ void delNode(List *head, int target)
     List *trav = head;
 
     // Traverse the list
-    for (; *trav != NULL; trav = &(*trav)->next)
-    {
+    for (; *trav != NULL; trav = &(*trav)->next){
         // If target was found
-        if ((*trav)->data == target)
-        {
+        if ((*trav)->data == target){
             List temp = *trav;
-            *trav = (*trav)->next;
+            *trav = temp->next;
             free(temp);
         }
     }

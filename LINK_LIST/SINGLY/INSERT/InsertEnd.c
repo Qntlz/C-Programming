@@ -43,8 +43,7 @@ List makeNode(int num)
 {
     List newNode = (List)malloc(sizeof(Node)); // Dynamically Allocate Memory for Node
 
-    if (newNode == NULL)
-    {
+    if (newNode == NULL){
         printf("Memory Allocation Failed"); // Error Checking
     }
 
@@ -55,11 +54,9 @@ List makeNode(int num)
 
 void populate(List *head, List *last)
 {
-    for (int i = 1; i <= 3; i++)
-    {
+    for (int i = 1; i <= 3; i++){
         List newNode = makeNode(i);
-        if (*head == NULL) // If the list is empty
-        {
+        if (*head == NULL) {      // If the list is empty
             *head = newNode;
             *last = newNode;
         }
@@ -71,7 +68,9 @@ void populate(List *head, List *last)
 
 void display(List head)
 {
-    for (; head != NULL; head = head->next) printf("%d ",head->data);
+    for (; head != NULL; head = head->next) {
+        printf("%d ",head->data);
+    }
     printf("\n");
 }
 
@@ -83,8 +82,7 @@ void insertEnd(List *head, int target)
     for (trav = head; *trav != NULL && (*trav)->data != target; trav = &(*trav)->next){}
 
     // If the element is present exit
-    if (*trav != NULL)
-    {
+    if (*trav != NULL){
         printf("Element Already existed!");
         return;
     }
