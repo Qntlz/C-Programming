@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Insert at the END using Pointer to Pointer to Node (PPTN) Method
+// Insert at the END using Pointer to Pointer to Node (PPTN) Method & last pointer
 
 // Define Node Structure
 typedef struct node
@@ -11,17 +11,24 @@ typedef struct node
 } Node, *List;
 
 List makeNode(int);
-void populate(List *, List *);
+void initList(List*,List*);
+void populate(List*, List*);
 void display(List);
-void insertEnd(List *, int);
+void insertEnd(List*, int);
 void insertEndLast(List, int);      // Inserting End using last pointer
 
 int main()
 {
     int num;
-    List head = NULL, last = NULL;
+    List head,last;      // last pointer stores the address of the last node
 
+    // Initialize List & last pointer
+    initList(&head,&last);
+
+    // Populate List
     populate(&head, &last);
+
+    // Display List
     printf("Before Insert: ");
     display(head);
 
@@ -37,6 +44,12 @@ int main()
     display(head);
 
     return 0;
+}
+
+void initList(List *head, List *last)
+{
+    *head = NULL;
+    *last = NULL;
 }
 
 List makeNode(int num)

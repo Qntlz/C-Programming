@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Insert at the END using Pointer to Pointer to Node (PPTN) Method if the element
-// is NOT PRESENT in the list
+// Insert the element in it's respective position in a SORTED LIST
 
 // Define Node Structure
 typedef struct node
@@ -13,17 +12,24 @@ typedef struct node
 } Node, *List;
 
 List makeNode(int);
-void populate(List *);
+void initList(List*);
+void populate(List*);
 void display(List);
-void insertSorted(List *, int);
+void insertSorted(List*, int);
 
 int main()
 {
     int num;
     char opt;
-    List head = NULL;
+    List head;
 
+    // Initialize List
+    initList(&head);
+
+    // Populate List
     populate(&head);
+
+    // Display List
     printf("Before Insert: ");
     display(head);
 
@@ -46,6 +52,11 @@ int main()
     } while (opt != 'N');
 
     return 0;
+}
+
+void initList(List *head)
+{
+    *head = NULL;
 }
 
 List makeNode(int num)

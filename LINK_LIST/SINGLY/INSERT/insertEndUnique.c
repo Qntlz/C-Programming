@@ -13,9 +13,9 @@ typedef struct node
 } Node, *List;
 
 List makeNode(int);
-void populate(List *);
+void populate(List*);
 void display(List);
-bool insertEnd(List *, int);
+bool insertEnd(List*, int);
 
 
 int main()
