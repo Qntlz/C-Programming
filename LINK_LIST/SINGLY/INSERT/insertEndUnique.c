@@ -15,7 +15,7 @@ typedef struct node
 List makeNode(int);
 void populate(List*);
 void display(List);
-bool insertEnd(List*, int);
+bool insertEndUnique(List*, int);
 
 
 int main()
@@ -31,7 +31,7 @@ int main()
     printf("Enter number to insert: ");
     scanf("%d", &num);
 
-    bool result = insertEnd(&head,num);         // Insert at the end using traversal
+    bool result = insertEndUnique(&head,num);         // Insert at the end using traversal
 
     // Display inserted element
     printf("\nAfter Insert: \n");
@@ -77,7 +77,7 @@ void display(List head)
     printf("\n");
 }
 
-bool insertEnd(List *head, int target)
+bool insertEndUnique(List *head, int target)
 {
     List *trav;
 

@@ -37,7 +37,7 @@ int main()
     scanf("%d", &num);
 
     insertEnd(&head,num);         // Insert at the end using traversal
-    insertEndLast(last, num);            // Insert at the end using the last pointer
+    //insertEndLast(last, num);            // Insert at the end using the last pointer
 
     // Display inserted element
     printf("After Insert: ");
@@ -92,16 +92,10 @@ void insertEnd(List *head, int target)
     List *trav;
 
     // Traverse the list using PPTN Method
-    for (trav = head; *trav != NULL && (*trav)->data != target; trav = &(*trav)->next){}
-
-    // If the element is present exit
-    if (*trav != NULL){
-        printf("Element Already existed!");
-        return;
-    }
+    for (trav = head; *trav != NULL; trav = &(*trav)->next){}
 
     // If the element was not found proceed inserting at the last
-    *trav = makeNode(target);
+        *trav = makeNode(target);
 }
 
 void insertEndLast(List last, int target)
