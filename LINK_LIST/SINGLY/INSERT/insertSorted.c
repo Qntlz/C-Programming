@@ -63,12 +63,14 @@ List makeNode(int num)
 {
     List newNode = (List)malloc(sizeof(Node)); // Dynamically Allocate Memory for Node
 
+    // IF memory allocation sucess proceed making the node
     if (newNode == NULL){
-        printf("Memory Allocation Failed"); // Error Checking
+        printf("Memory Allocation Failed"); 
     }
-
-    newNode->data = num;
-    newNode->next = NULL;
+    else{
+        newNode->data = num;
+        newNode->next = NULL;
+    }
     return newNode;
 }
 
@@ -100,13 +102,16 @@ void insertSorted(List *head, int num)
     List *curr;
     List newNode = makeNode(num);
 
+    // Traverse the list
     for (curr = head; *curr != NULL && (*curr)->data < num; curr = &(*curr)->next){}
 
+    // When the correct position was found
     if (*curr != NULL){
         newNode->next = *curr;
         *curr = newNode;
     }
     else {
+        // When reached the end of the list
         *curr = newNode;
     }
 }

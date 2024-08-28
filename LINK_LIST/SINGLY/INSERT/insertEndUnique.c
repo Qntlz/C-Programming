@@ -45,12 +45,15 @@ List makeNode(int num)
 {
     List newNode = (List)malloc(sizeof(Node)); // Dynamically Allocate Memory for Node
 
+    // IF memory allocation sucess proceed making the node
     if (newNode == NULL){
-        printf("Memory Allocation Failed"); // Error Checking
+        printf("Memory Allocation Failed"); 
     }
+    else{
+        newNode->data = num;
+        newNode->next = NULL;
 
-    newNode->data = num;
-    newNode->next = NULL;
+    }
     return newNode;
 }
 

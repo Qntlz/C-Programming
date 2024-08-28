@@ -15,7 +15,7 @@ void initList(List*,List*);
 void populate(List*, List*);
 void display(List);
 void insertEnd(List*, int);
-void insertEndLast(List, int);      // Inserting End using last pointer
+void insertEndLastPtr(List, int);      // Inserting End using last pointer
 
 int main()
 {
@@ -37,7 +37,7 @@ int main()
     scanf("%d", &num);
 
     insertEnd(&head,num);         // Insert at the end using traversal
-    //insertEndLast(last, num);            // Insert at the end using the last pointer
+    //insertEndLastPtr(last, num);            // Insert at the end using the last pointer
 
     // Display inserted element
     printf("After Insert: ");
@@ -54,14 +54,17 @@ void initList(List *head, List *last)
 
 List makeNode(int num)
 {
-    List newNode = (List)malloc(sizeof(Node)); // Dynamically Allocate Memory for Node
+    // Dynamically Allocate Memory for Node
+    List newNode = (List)malloc(sizeof(Node)); 
 
+    // IF memory allocation sucess proceed making the node
     if (newNode == NULL){
-        printf("Memory Allocation Failed"); // Error Checking
+        printf("Memory Allocation Failed"); 
     }
-
-    newNode->data = num;
-    newNode->next = NULL;
+    else{
+        newNode->data = num;
+        newNode->next = NULL;
+    }
     return newNode;
 }
 
@@ -69,7 +72,8 @@ void populate(List *head, List *last)
 {
     for (int i = 1; i <= 3; i++){
         List newNode = makeNode(i);
-        if (*head == NULL) {      // If the list is empty
+        // If the list is empty
+        if (*head == NULL) {      
             *head = newNode;
             *last = newNode;
         }
@@ -94,11 +98,11 @@ void insertEnd(List *head, int target)
     // Traverse the list using PPTN Method
     for (trav = head; *trav != NULL; trav = &(*trav)->next){}
 
-    // If the element was not found proceed inserting at the last
-        *trav = makeNode(target);
+    // Insert at the last
+    *trav = makeNode(target);
 }
 
-void insertEndLast(List last, int target)
+void insertEndLastPtr(List last, int target)
 {
     last->next = makeNode(target);
 }
