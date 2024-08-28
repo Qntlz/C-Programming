@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 // Deleting a Node Using PPTN
-// Task: Delete the first occurence of the target integer 
+// Task: Delete the all occurence of the target integer 
 
 typedef struct node
 {
@@ -11,22 +11,26 @@ typedef struct node
 }Node, *List;
 
 List makeNode(int);
+void initList(List*);
 void populate(List*);
 void display(List);
-void delNode(List*,int);
+void delAllOcc(List*,int);
 
 int main()
 {
-    int target = 20;                    // Target Value to be deleted
-    List head = NULL;
+    int target = 10;                    // Target Value to be deleted
+    List head;
 
+    initList(&head);
     populate(&head);
+
+    printf("Target Integer to Delete: %d\n",target);
 
     printf("Before Deletion: ");        // Before Deleting a Node
     display(head);
     printf("\n");
 
-    delNode(&head,target);
+    delAllOcc(&head,target);
     printf("After Deletion: ");        // Before Deleting a Node
     display(head);
 
@@ -35,8 +39,10 @@ int main()
 
 List makeNode(int num)
 {
+    // Dynamically Allocate Memory for Node
     List newNode = malloc(sizeof(Node));
 
+    // IF memory allocation sucess proceed making the node
     if(newNode == NULL) {
         printf("Memory Allocation Failed");
     }
@@ -46,11 +52,20 @@ List makeNode(int num)
     return newNode;
 }
 
+void initList(List *head)
+{
+    // Initialize list to be empty
+    *head = NULL;
+}
+
 void populate(List *head)
 {
+    // Dummy Values
+    int arr[] = {10,10,15,10};
+
     List last = NULL;
-    for (int i = 10; i <= 30; i+=10){
-        List newNode = makeNode(i);
+    for (int i = 0; i < 4; i++){
+        List newNode = makeNode(arr[i]);
         if(*head == NULL) *head = newNode;
         else last->next = newNode;
         last = newNode;
@@ -64,18 +79,22 @@ void display(List head)
     }
 }
 
-void delNode(List *head,int target)
+void delAllOcc(List *head,int target)
 {
-    List *trav = head;
-    
-    // Traverse the list
-    for (;*trav != NULL; trav = &(*trav)->next){
-        // If target was found
+    List *trav;
+
+    for (trav = head; *trav != NULL;)
+    {
         if((*trav)->data == target){
             List temp = *trav;
             *trav = temp->next;
             free(temp);
-            return;
+        }
+        else{
+            trav = &(*trav)->next;
         }
     }
+    
+    
+    
 }

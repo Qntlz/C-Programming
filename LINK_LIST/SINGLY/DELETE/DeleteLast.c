@@ -11,14 +11,16 @@ typedef struct node
 }Node, *List;
 
 List makeNode(int);
+void initList(List*);
 void populate(List*);
 void display(List);
 void delLastNode(List);
 
 int main()
 {
-    List head = NULL;
+    List head;
 
+    initList(&head);
     populate(&head);
 
     printf("Before Deletion: ");        // Before Deleting a Node
@@ -34,13 +36,23 @@ int main()
 
 List makeNode(int num)
 {
+    // Dynamically Allocate Memory for Node
     List newNode = malloc(sizeof(Node));
 
-    if(newNode == NULL) printf("Memory Allocation Failed");
+    // IF memory allocation sucess proceed making the node
+    if(newNode == NULL){
+        printf("Memory Allocation Failed");
+    }
 
     newNode->data = num;
     newNode->next = NULL;
     return newNode;
+}
+
+void initList(List *head)
+{
+    // Initialize list to be empty
+    *head = NULL;
 }
 
 void populate(List *head)
