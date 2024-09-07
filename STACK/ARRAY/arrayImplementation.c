@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Basic Array Implementation in Stack
-// Stack: "LAST In, FIRST Out"
-
 #define MAX 10
 #define rogueVal -999           // Sentinel Value
 
@@ -17,6 +14,7 @@ void initStack(Stack*);
 void push(Stack, int);                      // ADD item to the Stack
 int pop(Stack);                             // REMOVE item from the Stack
 bool empty(Stack);                          // CHECKS if the stack is empty
+void top(Stack);                            // Displays the top
 
 int main()
 {
@@ -35,13 +33,15 @@ int main()
     for (int i = 0; i <= S->top; i++){
         printf("%d ",S->arr[i]);
     }
-    printf("\nTop: %d",S->arr[S->top]);
+    top(S);
+ 
 
     // Pop
     printf("\n\nPop:\n");
-        for (int i = S->top; i >= 0; i--){
+    for (int i = S->top; i >= 0; i--){
         printf("%d ",pop(S));
     }
+    top(S);
 
     // Free allocated memory
     free(S);
@@ -61,7 +61,7 @@ void initStack(Stack *S)
 
 bool empty(Stack S)
 {
-    return (S->top == -1);      // Return -1 if the list is empty
+    return (S->top == -1);      // Return -1 if the stack is empty
 }
 
 void push(Stack S, int n)
@@ -69,6 +69,8 @@ void push(Stack S, int n)
     // Check if the stack is FULL
     if(S->top != MAX - 1){
         S->arr[++(S->top)] = n;
+    } else {
+        printf("Stack Overflow: Cannot push %d, stack is full.\n", n);
     }
 }
 
@@ -79,4 +81,8 @@ int pop(Stack S)
         return rogueVal;        // return a symbolic constant
     }
     return S->arr[(S->top)--];      // Returns the element at the same time decrements top
+}
+
+void top(Stack S){
+    printf("\nTop: %d\n",S->top);
 }
